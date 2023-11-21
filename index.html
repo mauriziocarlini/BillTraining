@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bill Training</title>
+</head>
+<body>
+
+    <h1>Bill Training</h1>
+
+    <input type="file" id="fileInput" style="display: none;" />
+    <button onclick="selectFile()">Upload PK9</button>
+
+    <div id="modificationInputs" style="margin-top: 20px;">
+        <!-- POKEMON NAME START -->
+        <label for="pokemonName">Pokémon:</label>
+        <span id="pokemonNameValue"></span><br>
+        <hr>
+        <!-- POKEMON NAME END -->
+
+        <!-- STAT START -->
+        <label for="hp">HP:</label>
+        <input type="number" id="hp" min="0" max="252" value="0"><br>
+
+        <label for="atk">Atk:</label>
+        <input type="number" id="atk" min="0" max="252" value="0"><br>
+
+        <label for="def">Def:</label>
+        <input type="number" id="def" min="0" max="252" value="0"><br>
+
+        <label for="spa">SpA:</label>
+        <input type="number" id="spa" min="0" max="252" value="0"><br>
+
+        <label for="spd">SpD:</label>
+        <input type="number" id="spd" min="0" max="252" value="0"><br>
+
+        <label for="spe">Spe:</label>
+        <input type="number" id="spe" min="0" max="252" value="0">
+        <hr>
+        <!-- STAT END -->
+
+        <!-- NATURE START -->
+        <label for="nature">Nature:</label>
+        <span id="natureValue"></span><br>
+        <!-- NATURE END -->
+
+        <!-- MINT START -->
+        <div id="setNature" style="display: none;">
+            <label for="mintSelect">Mint:</label>
+            <select id="mintSelect">
+                <option value="1">Lonely (+Atk / -Def)</option>
+                <option value="2">Brave (+Atk / -Spe)</option>
+                <option value="3">Adamant (+Atk / -SpA)</option>
+                <option value="4">Naughty (+Atk / -SpD)</option>
+                <option value="5">Bold (+Def / -Atk)</option>
+                <option value="7">Relaxed (+Def / -Spe)</option>
+                <option value="8">Impish (+Def / -SpA)</option>
+                <option value="9">Lax (+Def / -SpD)</option>
+                <option value="15">Modest (+SpA / -Atk)</option>
+                <option value="16">Mild (+SpA / -Def)</option>
+                <option value="17">Quiet (+SpA / -Spe)</option>
+                <option value="19">Rash (+SpA / -SpD)</option>
+                <option value="20">Calm (+SpD / -Atk)</option>
+                <option value="21">Gentle (+SpD / -Def)</option>
+                <option value="22">Sassy (+SpD / -Spe)</option>
+                <option value="23">Careful (+SpD / -SpA)</option>
+                <option value="10">Timid (+Spe / -Atk)</option>
+                <option value="11">Hasty (+Spe / -Def)</option>
+                <option value="13">Jolly (+Spe / -SpA)</option>
+                <option value="14">Naive (+Spe / -SpD)</option>
+            </select>
+        </div>
+        <hr>
+        <!-- MINT END -->
+
+              <!-- TERATYPE START -->
+        <label for="teratype">Teratype:</label>
+        <span id="teratypeValue"></span><br>
+        <div id="setTeratype" style="display: none;">
+            <label for="teratypeSelect">Select Teratype:</label>
+            <!-- Aggiungi la select per il Teratype -->
+            <select id="teratypeSelect">
+                <option value="0">Normal</option>
+                <option value="1">Fighting</option>
+                <option value="2">Flying</option>
+                <option value="3">Poison</option>
+                <option value="4">Ground</option>
+                <option value="5">Rock</option>
+                <option value="6">Bug</option>
+                <option value="7">Ghost</option>
+                <option value="8">Steel</option>
+                <option value="9">Fire</option>
+                <option value="10">Water</option>
+                <option value="11">Grass</option>
+                <option value="12">Electric</option>
+                <option value="13">Psychic</option>
+                <option value="14">Ice</option>
+                <option value="15">Dragon</option>
+                <option value="16">Dark</option>
+                <option value="17">Fairy</option>
+                <option value="19">Default</option>
+            </select>
+        </div>
+        <!-- TERATYPE END -->
+    </div>
+
+    <button onclick="saveFile()" style="margin-top: 20px; padding: 10px 20px; font-size: 16px; cursor: pointer;">Export PK9</button>
+
+    <script src="script.js"></script>
+</body>
+</html>
