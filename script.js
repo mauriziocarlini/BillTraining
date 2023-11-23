@@ -77,6 +77,13 @@ function handleFileSelect(event) {
             const spa = view.getUint8(42);
             const spd = view.getUint8(43);
             const spe = view.getUint8(41);
+
+            document.getElementById('hp').value = hp;
+            document.getElementById('atk').value = atk;
+            document.getElementById('def').value = def;
+            document.getElementById('spa').value = spa;
+            document.getElementById('spd').value = spd;
+            document.getElementById('spe').value = spe;
             // STAT END
 
             // NATURE START
@@ -100,6 +107,9 @@ function handleFileSelect(event) {
             // Imposta le voci preselezionate in base ai valori iniziali
             document.getElementById('mintSelect').value = initialNatureValue;
             document.getElementById('teratypeSelect').value = initialTeratypeValue;
+
+            // Chiamata a displayByteInterpretation
+            displayByteInterpretation(data);
         };
 
         reader.readAsArrayBuffer(file);
@@ -116,7 +126,7 @@ function saveFile() {
     const spe = document.getElementById('spe').value;
 
     const total = parseInt(hp) + parseInt(atk) + parseInt(def) +
-                    parseInt(spa) + parseInt(spd) + parseInt(spe);
+                    parseInt(spe) + parseInt(spa) + parseInt(spd);
 
     if (total > 510) {
         alert('Total cannot exceed 510.');
@@ -136,7 +146,7 @@ function saveFile() {
         const data = new Uint8Array(e.target.result);
 
         // Modifica solo le parti modificate dall'utente
-        data.set([hp, atk, def, spa, spd, spe], 38);
+        data.set([hp, atk, def, spe, spa, spd], 38);
 
         // Modifica la natura solo se è stata cambiata
         const selectedNatureValue = document.getElementById('mintSelect').value;
