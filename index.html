@@ -2,52 +2,64 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="mobile-web-app-capable" content="yes">
     <title>Bill Training</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Press+Start+2P">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <h1>Bill Training</h1>
 
-    <input type="file" id="fileInput" style="display: none;" />
+    <input type="file" id="fileInput"/>
     <button onclick="selectFile()">Upload PK9</button>
 
-    <div id="modificationInputs" style="margin-top: 20px;">
+<div id="playGround">
+
+    <div id="modificationInputs">
         <!-- POKEMON NAME START -->
-        <label for="pokemonName">Pokémon:</label>
         <span id="pokemonNameValue"></span><br>
+        <div id="OT">
+            <label for="OTName">OT:</label>
+            <span id="OTNameValue"></span><br>
+        </div>
         <hr>
         <!-- POKEMON NAME END -->
 
         <!-- STAT START -->
-        <label for="hp">HP:</label>
+        <div id="stats">
+        <label for="hp">HP</label>
         <input type="number" id="hp" min="0" max="252" value="0"><br>
 
-        <label for="atk">Atk:</label>
+        <label for="atk">Atk</label>
         <input type="number" id="atk" min="0" max="252" value="0"><br>
 
-        <label for="def">Def:</label>
+        <label for="def">Def</label>
         <input type="number" id="def" min="0" max="252" value="0"><br>
 
-        <label for="spa">SpA:</label>
+        <label for="spa">SpA</label>
         <input type="number" id="spa" min="0" max="252" value="0"><br>
 
-        <label for="spd">SpD:</label>
+        <label for="spd">SpD</label>
         <input type="number" id="spd" min="0" max="252" value="0"><br>
 
-        <label for="spe">Spe:</label>
+        <label for="spe">Spe</label>
         <input type="number" id="spe" min="0" max="252" value="0">
+        </div>
         <hr>
         <!-- STAT END -->
 
         <!-- NATURE START -->
-        <label for="nature">Nature:</label>
+<!--         <label for="nature">Current nature:</label>
         <span id="natureValue"></span><br>
-        <!-- NATURE END -->
+ -->        <!-- NATURE END -->
 
         <!-- MINT START -->
-        <div id="setNature" style="display: none;">
-            <label for="mintSelect">Mint:</label>
+        <div id="setNature">
+            <label for="mintSelect">Set nature</label>
             <select id="mintSelect">
                 <option value="1">Lonely (+Atk / -Def)</option>
                 <option value="2">Brave (+Atk / -Spe)</option>
@@ -74,11 +86,12 @@
         <hr>
         <!-- MINT END -->
 
-              <!-- TERATYPE START -->
-        <label for="teratype">Teratype:</label>
+        <!-- TERATYPE START -->
+        <div id="tera">
+<!--         <label for="teratype">Current teratype:</label>
         <span id="teratypeValue"></span><br>
-        <div id="setTeratype" style="display: none;">
-            <label for="teratypeSelect">Select Teratype:</label>
+ -->        <div id="setTeratype">
+            <label for="teratypeSelect">Set teratype</label>
             <!-- Aggiungi la select per il Teratype -->
             <select id="teratypeSelect">
                 <option value="0">Normal</option>
@@ -99,14 +112,29 @@
                 <option value="15">Dragon</option>
                 <option value="16">Dark</option>
                 <option value="17">Fairy</option>
-                <option value="19">Default</option>
+                <option value="19">Default (not changed)</option>
             </select>
         </div>
+        </div>
         <!-- TERATYPE END -->
+
+        <hr>
+        <div id="item">
+        <label for="abilityPatchCheckbox">Give Ability Patch</label>
+        <input type="checkbox" id="abilityPatchCheckbox" onchange="handleAbilityPatchChange()" disabled>
+        <!-- <p>Any eventually held item will be replaced with this one.</p> -->
+        </div>
+
+
     </div>
 
-    <button onclick="saveFile()" style="margin-top: 20px; padding: 10px 20px; font-size: 16px; cursor: pointer;">Export PK9</button>
+        <hr>
+    <button onclick="saveFile()">Export PK9</button>
+</div>
 
+    <!-- <div id="byteInterpretation"></div> -->
+
+        
     <script src="script.js"></script>
 </body>
 </html>

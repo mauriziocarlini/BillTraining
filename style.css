@@ -1,0 +1,126 @@
+h1,p,div {
+    font-weight: normal;
+}
+body {
+    font-family: 'Press Start 2P', cursive;
+    background-color: #04364A;
+    color: #FFFFFF;
+    margin: 0 24px;
+    text-align: center;
+}
+
+h1 {
+    font-size: 24px;
+    margin-top: 40px;
+}
+
+p {
+    font-size: 10px;
+}
+.subtitle {
+    opacity: 0.8;
+}
+
+#fileInput {
+	display: none;
+}
+
+#playGround {
+	display: none;
+    background-color: rgba(41,173,178,.2);
+    border-radius: 4px;
+    padding: 24px;
+    margin: 0 auto;
+    max-width: 480px;
+}
+
+button {
+    background-color: #EF6262;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    line-height: 24px;
+    transition: background-color 0.3s;
+    margin: 20px 0;
+    display: inline-block;
+    font-family: 'Press Start 2P', cursive;
+}
+
+button:hover {
+    background-color: #DB5656;
+}
+
+input, select {
+    padding: 10px;
+    border: 1px solid #BDBDBD;
+    border-radius: 4px;
+    margin-top: 8px;
+    box-sizing: border-box;
+    transition: border-color 0.3s;
+    font-size: 12px;
+    color: #333;
+    height: 24px;
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: #2196F3;
+}
+
+hr {
+	display: block;
+	height: 1px;
+	border: none;
+	background-color: rgba(255,255,255,.1);
+	margin: 20px auto;
+}
+
+label {
+	font-size: 12px;
+	display: block;
+}
+
+#pokemonNameValue{
+	display: inline-block;
+	margin-top: 8px;
+}
+#stats label {
+	display: inline-block;
+	width: 40px;
+	text-align: right;
+}
+
+#item label {
+	display: inline-block;
+}
+#item p {
+	opacity: 0.8;
+	margin: 8px auto;
+}
+#abilityPatchCheckbox {
+	margin: 0;
+	height: 16px;
+}
+
+#byteInterpretation {
+	font-size: 8px;
+	opacity: 0.8;
+}
+#byteInterpretation span {
+	display: block;
+	width: 200px;
+	text-align: left;
+	margin: 0 auto;
+}
+
+#OT {
+	margin: 8px auto;
+}
+#OT label, #OT span {
+	opacity: 0.8;
+	font-size: 10px;
+	display: inline-block;
+}
