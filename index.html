@@ -1,301 +1,153 @@
-// Dizionario delle nature
-const natureDictionary = {
-    1: 'Lonely (+Atk / -Def)',
-    2: 'Brave (+Atk / -Spe)',
-    3: 'Adamant (+Atk / -SpA)',
-    4: 'Naughty (+Atk / -SpD)',
-    5: 'Bold (+Def / -Atk)',
-    7: 'Relaxed (+Def / -Spe)',
-    8: 'Impish (+Def / -SpA)',
-    9: 'Lax (+Def / -SpD)',
-    10: 'Timid (+Spe / -Atk)',
-    11: 'Hasty (+Spe / -Def)',
-    13: 'Jolly (+Spe / -SpA)',
-    14: 'Naive (+Spe / -SpD)',
-    15: 'Modest (+SpA / -Atk)',
-    16: 'Mild (+SpA / -Def)',
-    17: 'Quiet (+SpA / -Spe)',
-    19: 'Rash (+SpA / -SpD)',
-    20: 'Calm (+SpD / -Atk)',
-    21: 'Gentle (+SpD / -Def)',
-    22: 'Sassy (+SpD / -Spe)',
-    23: 'Careful (+SpD / -SpA)'
-};
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TTCKK4LR2Z"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
 
-// Dizionario dei teratipi
-const teratypeDictionary = {
-    0: 'Normal',
-    1: 'Fighting',
-    2: 'Flying',
-    3: 'Poison',
-    4: 'Ground',
-    5: 'Rock',
-    6: 'Bug',
-    7: 'Ghost',
-    8: 'Steel',
-    9: 'Fire',
-    10: 'Water',
-    11: 'Grass',
-    12: 'Electric',
-    13: 'Psychic',
-    14: 'Ice',
-    15: 'Dragon',
-    16: 'Dark',
-    17: 'Fairy',
-    19: 'Default (not changed)',
-};
+      gtag('config', 'G-TTCKK4LR2Z');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>Bill Training</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Press+Start+2P">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-let initialNatureValue;
-let initialTeratypeValue;
-let pokemonName;
-let OTName;
+    <h1>Bill Training</h1>
 
-function selectFile() {
-    document.getElementById('fileInput').click();
-}
+    <input type="file" id="fileInput"/>
+    <button onclick="selectFile()">Upload PK9</button>
 
-document.getElementById('fileInput').addEventListener('change', handleFileSelect);
+<div id="playGround">
 
-// Funzione chiamata quando viene selezionato un file
-function handleFileSelect(event) {
-    const file = event.target.files[0];
-    if (file) {
-        const reader = new FileReader();
+    <div id="modificationInputs">
+        <!-- POKEMON NAME START -->
+        <span id="pokemonNameValue"></span><br>
+        <div id="OT">
+            <label for="OTName">OT:</label>
+            <span id="OTNameValue"></span><br>
+        </div>
+        <hr>
+        <!-- POKEMON NAME END -->
 
-        reader.onload = function (e) {
-            const data = new Uint8Array(e.target.result);
-            const view = new DataView(e.target.result);
+        <!-- STAT START -->
+        <div id="stats">
+        <label for="hp">HP</label>
+        <input type="number" id="hp" min="0" max="252" value="0"><br>
 
-            // POKEMON NAME START
-            pokemonName = String.fromCharCode.apply(null, data.slice(88, 112));
-            document.getElementById('pokemonNameValue').textContent = pokemonName;
-            // POKEMON NAME END
+        <label for="atk">Atk</label>
+        <input type="number" id="atk" min="0" max="252" value="0"><br>
 
-            // OT START
-            OTName = String.fromCharCode.apply(null, data.slice(168, 194));
-            document.getElementById('OTNameValue').textContent = OTName;
-            // OT END
+        <label for="def">Def</label>
+        <input type="number" id="def" min="0" max="252" value="0"><br>
 
-            // STAT START
-            const hp = view.getUint8(38);
-            const atk = view.getUint8(39);
-            const def = view.getUint8(40);
-            const spa = view.getUint8(42);
-            const spd = view.getUint8(43);
-            const spe = view.getUint8(41);
+        <label for="spa">SpA</label>
+        <input type="number" id="spa" min="0" max="252" value="0"><br>
 
-            document.getElementById('hp').value = hp;
-            document.getElementById('atk').value = atk;
-            document.getElementById('def').value = def;
-            document.getElementById('spa').value = spa;
-            document.getElementById('spd').value = spd;
-            document.getElementById('spe').value = spe;
-            // STAT END
+        <label for="spd">SpD</label>
+        <input type="number" id="spd" min="0" max="252" value="0"><br>
 
-            // NATURE START
-            const natureValue = view.getUint8(33);
-            const natureText = natureDictionary[natureValue] || 'Neutral';
-            // document.getElementById('natureValue').textContent = `${natureText}`;
-            initialNatureValue = natureValue;  // Salva il valore iniziale della natura
-            // NATURE END
+        <label for="spe">Spe</label>
+        <input type="number" id="spe" min="0" max="252" value="0">
+        </div>
+        <hr>
+        <!-- STAT END -->
 
-            // TERATYPE START
-            const teratypeValue = view.getUint8(149);
-            const teratypeText = teratypeDictionary[teratypeValue] || 'Default (not changed)';
-            // document.getElementById('teratypeValue').textContent = teratypeText;
-            initialTeratypeValue = teratypeValue;  // Salva il valore iniziale del teratype
-            // TERATYPE END
+        <!-- NATURE START -->
+<!--         <label for="nature">Current nature:</label>
+        <span id="natureValue"></span><br>
+ -->        <!-- NATURE END -->
 
-            // Ability Patch START
-            const byte10 = view.getUint8(10);
-            const byte11 = view.getUint8(11);
-            const abilityPatchCheckbox = document.getElementById('abilityPatchCheckbox');
+        <!-- MINT START -->
+        <div id="setNature">
+            <label for="mintSelect">Set nature</label>
+            <select id="mintSelect">
+                <option value="1">Lonely (+Atk / -Def)</option>
+                <option value="2">Brave (+Atk / -Spe)</option>
+                <option value="3">Adamant (+Atk / -SpA)</option>
+                <option value="4">Naughty (+Atk / -SpD)</option>
+                <option value="5">Bold (+Def / -Atk)</option>
+                <option value="7">Relaxed (+Def / -Spe)</option>
+                <option value="8">Impish (+Def / -SpA)</option>
+                <option value="9">Lax (+Def / -SpD)</option>
+                <option value="15">Modest (+SpA / -Atk)</option>
+                <option value="16">Mild (+SpA / -Def)</option>
+                <option value="17">Quiet (+SpA / -Spe)</option>
+                <option value="19">Rash (+SpA / -SpD)</option>
+                <option value="20">Calm (+SpD / -Atk)</option>
+                <option value="21">Gentle (+SpD / -Def)</option>
+                <option value="22">Sassy (+SpD / -Spe)</option>
+                <option value="23">Careful (+SpD / -SpA)</option>
+                <option value="10">Timid (+Spe / -Atk)</option>
+                <option value="11">Hasty (+Spe / -Def)</option>
+                <option value="13">Jolly (+Spe / -SpA)</option>
+                <option value="14">Naive (+Spe / -SpD)</option>
+            </select>
+        </div>
+        <hr>
+        <!-- MINT END -->
 
-            if (byte10 === 70 && byte11 === 6) {
-                // Se i byte 10 e 11 hanno i valori desiderati, checka e disabilita la checkbox
-                abilityPatchCheckbox.checked = true;
-                abilityPatchCheckbox.disabled = true;
-            } else {
-                // Altrimenti, deseleziona e abilita la checkbox
-                abilityPatchCheckbox.checked = false;
-                abilityPatchCheckbox.disabled = false;
-            }
-            // Ability Patch END
+        <!-- TERATYPE START -->
+        <div id="tera">
+<!--         <label for="teratype">Current teratype:</label>
+        <span id="teratypeValue"></span><br>
+ -->        <div id="setTeratype">
+            <label for="teratypeSelect">Set teratype</label>
+            <!-- Aggiungi la select per il Teratype -->
+            <select id="teratypeSelect">
+                <option value="0">Normal</option>
+                <option value="1">Fighting</option>
+                <option value="2">Flying</option>
+                <option value="3">Poison</option>
+                <option value="4">Ground</option>
+                <option value="5">Rock</option>
+                <option value="6">Bug</option>
+                <option value="7">Ghost</option>
+                <option value="8">Steel</option>
+                <option value="9">Fire</option>
+                <option value="10">Water</option>
+                <option value="11">Grass</option>
+                <option value="12">Electric</option>
+                <option value="13">Psychic</option>
+                <option value="14">Ice</option>
+                <option value="15">Dragon</option>
+                <option value="16">Dark</option>
+                <option value="17">Fairy</option>
+                <option value="19">Default (not changed)</option>
+            </select>
+        </div>
+        </div>
+        <!-- TERATYPE END -->
 
-            // Mostra la select solo quando viene caricato un file
-            document.getElementById('playGround').style.display = 'block';
-
-            // Imposta le voci preselezionate in base ai valori iniziali
-            document.getElementById('mintSelect').value = initialNatureValue;
-            document.getElementById('teratypeSelect').value = initialTeratypeValue;
-            // Chiamata a displayByteInterpretation
-            displayByteInterpretation(data);
-        };
-
-        reader.readAsArrayBuffer(file);
-    }
-
-}
-
-// Funzione chiamata quando si salva il file
-function saveFile() {
-    const hp = document.getElementById('hp').value;
-    const atk = document.getElementById('atk').value;
-    const def = document.getElementById('def').value;
-    const spa = document.getElementById('spa').value;
-    const spd = document.getElementById('spd').value;
-    const spe = document.getElementById('spe').value;
-
-    const total = parseInt(hp) + parseInt(atk) + parseInt(def) +
-                    parseInt(spe) + parseInt(spa) + parseInt(spd);
-
-    if (total > 510) {
-        alert('Total cannot exceed 510.');
-        return;
-    }
-
-    const fileInput = document.getElementById('fileInput');
-    if (fileInput.files.length === 0) {
-        alert('Please upload a PK9 file.');
-        return;
-    }
-
-    // Chiedi all'utente il nome del file
-    const fileName = prompt('Enter the name for the exported PK9 file (without extension):');
-
-    if (!fileName) {
-        alert('Please enter a valid file name.');
-        return;
-    }
-
-    const originalFile = fileInput.files[0];
-    const reader = new FileReader();
-
-    reader.onload = function (e) {
-        const data = new Uint8Array(e.target.result);
-
-        // Modifica solo le parti modificate dall'utente
-        data.set([hp, atk, def, spe, spa, spd], 38);
-
-        // Modifica la natura solo se è stata cambiata
-        const selectedNatureValue = document.getElementById('mintSelect').value;
-        if (selectedNatureValue !== initialNatureValue) {
-            data.set([selectedNatureValue], 33);
-        }
-
-        // Modifica il teratype solo se è stato cambiato
-        const selectedTeratypeValue = document.getElementById('teratypeSelect').value;
-        if (selectedTeratypeValue !== initialTeratypeValue) {
-            data.set([selectedTeratypeValue], 149);
-        }
-
-        // Modifica l'Ability Patch se la checkbox è selezionata
-        if (document.getElementById('abilityPatchCheckbox').checked) {
-            data.set([70, 6], 10);
-        }
-
-        const modifiedFile = new Blob([data], { type: 'application/octet-stream' });
-
-        const downloadLink = document.createElement('a');
-        downloadLink.href = URL.createObjectURL(modifiedFile);
-
-        // Aggiungi il suffisso e imposta il nome del file
-        downloadLink.download = `${fileName}.pk9`;
-
-        document.body.appendChild(downloadLink);
-        downloadLink.click();
-        document.body.removeChild(downloadLink);
-    };
-
-    reader.readAsArrayBuffer(originalFile);
-}
-
-// Funzione per interpretare il byte come carattere alfanumerico
-function interpretByte(byte) {
-    // Verifica se il byte è un carattere stampabile ASCII
-    if (byte >= 32 && byte <= 126) {
-        return String.fromCharCode(byte);
-    } else {
-        // Se non è un carattere stampabile, restituisci una rappresentazione numerica
-        return byte.toString();
-    }
-}
-
-// // Funzione per mostrare l'interpretazione dei byte
-// function displayByteInterpretation(data) {
-//     const byteInterpretationDiv = document.getElementById('byteInterpretation');
-//     byteInterpretationDiv.innerHTML = '<h2>Byte Interpretation</h2>';
-
-//     for (let i = 0; i < data.length; i++) {
-//         const byteValue = data[i];
-//         const charRepresentation = interpretByte(byteValue);
-
-//         const paragraph = document.createElement('span');
-//         paragraph.textContent = `Byte ${i + 1}: ${charRepresentation}`;
+        <hr>
+        <div id="item">
+        <label for="abilityPatchCheckbox">Give Ability Patch</label>
+        <input type="checkbox" id="abilityPatchCheckbox" onchange="handleAbilityPatchChange()" disabled>
+        <!-- <p>Any eventually held item will be replaced with this one.</p> -->
+        </div>
 
 
-//         byteInterpretationDiv.appendChild(paragraph);
-//     }
-// }
+    </div>
 
-// Funzione chiamata quando cambia lo stato della checkbox Ability Patch
-function handleAbilityPatchChange() {
-    const abilityPatchCheckbox = document.getElementById('abilityPatchCheckbox');
-    const fileInput = document.getElementById('fileInput');
+        <hr>
+    <button onclick="saveFile()">Export PK9</button>
+</div>
 
-    if (abilityPatchCheckbox.checked) {
-        // Se la checkbox è selezionata, imposta i byte 10 e 11 ai valori desiderati
-        const originalFile = fileInput.files[0];
-        const reader = new FileReader();
+    <!-- <div id="byteInterpretation"></div> -->
+    <br>
+    
+    <script type='text/javascript' src='https://storage.ko-fi.com/cdn/widget/Widget_2.js'></script>
+    <script type='text/javascript'>kofiwidget2.init('Support Me on Ko-fi', '#29abe0', 'O4O0R4504');kofiwidget2.draw();</script>
 
-        reader.onload = function (e) {
-            const data = new Uint8Array(e.target.result);
-            data.set([70, 6], 10);
-
-            const modifiedFile = new Blob([data], { type: 'application/octet-stream' });
-            fileInput.files[0] = new File([modifiedFile], originalFile.name);
-        };
-
-        reader.readAsArrayBuffer(originalFile);
-    } else {
-        // Se la checkbox è deselezionata, reimposta i byte 10 e 11 ai valori originali
-        handleFileSelect({ target: { files: [fileInput.files[0]] } });
-    }
-}
-
-// Funzione chiamata quando viene cambiato il valore di una stat
-function handleStatChange(statInputId) {
-    const individualStatLimit = 252;
-
-    // Assicurati che ogni singola stat non superi 252
-    const updatedStatValue = Math.min(individualStatLimit, parseInt(document.getElementById(statInputId).value) || 0);
-    document.getElementById(statInputId).value = updatedStatValue;
-
-    const hp = parseInt(document.getElementById('hp').value) || 0;
-    const atk = parseInt(document.getElementById('atk').value) || 0;
-    const def = parseInt(document.getElementById('def').value) || 0;
-    const spa = parseInt(document.getElementById('spa').value) || 0;
-    const spd = parseInt(document.getElementById('spd').value) || 0;
-    const spe = parseInt(document.getElementById('spe').value) || 0;
-
-    const total = hp + atk + def + spa + spd + spe;
-
-    // Aggiorna i valori delle stat per evitare che la somma superi 510
-    if (total > 510) {
-        const exceedingAmount = total - 510;
-        const currentStatValue = parseInt(document.getElementById(statInputId).value) || 0;
-        const updatedStatValue = Math.max(0, currentStatValue - exceedingAmount);
-
-        // Aggiorna il valore della stat e il campo di input corrispondente
-        document.getElementById(statInputId).value = updatedStatValue;
-    }
-}
-
-// Aggiungi il gestore degli eventi "input" per ogni campo di input delle stat
-document.getElementById('hp').addEventListener('input', () => handleStatChange('hp'));
-document.getElementById('atk').addEventListener('input', () => handleStatChange('atk'));
-document.getElementById('def').addEventListener('input', () => handleStatChange('def'));
-document.getElementById('spa').addEventListener('input', () => handleStatChange('spa'));
-document.getElementById('spd').addEventListener('input', () => handleStatChange('spd'));
-document.getElementById('spe').addEventListener('input', () => handleStatChange('spe'));
-
+        
+    <script src="script.js"></script>
+</body>
+</html>
