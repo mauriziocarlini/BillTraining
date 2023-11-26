@@ -130,4 +130,7 @@ a {
     text-decoration: underline;
     opacity: 0.8;
     display: block;
+    color: #FFF;
+    margin-top: 48px;
+    padding: 16px 24px;
 }
