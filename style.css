@@ -124,3 +124,10 @@ label {
 	font-size: 10px;
 	display: inline-block;
 }
+
+a {
+    font-size: 10px;
+    text-decoration: underline;
+    opacity: 0.8;
+    display: block;
+}
