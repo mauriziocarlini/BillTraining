@@ -72,8 +72,8 @@ function handleFileSelect(event) {
             // POKEMON NAME END
 
             // OT START
-            OTName = String.fromCharCode.apply(null, data.slice(168, 194));
-            document.getElementById('OTNameValue').textContent = OTName;
+            // OTName = String.fromCharCode.apply(null, data.slice(168, 194));
+            // document.getElementById('OTNameValue').textContent = OTName;
             // OT END
 
             // STAT START
