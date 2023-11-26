@@ -30,7 +30,7 @@ p {
     background-color: rgba(41,173,178,.2);
     border-radius: 4px;
     padding: 24px;
-    margin: 0 auto;
+    margin: 0 auto 5px auto;
     max-width: 480px;
 }
 
@@ -131,6 +131,6 @@ a#linktree {
     opacity: 0.8;
     display: inline-block;
     color: #FFF;
-    margin-top: 16px;
+    margin-top: 8px;
     padding: 16px 24px;
 }
