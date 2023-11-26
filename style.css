@@ -125,11 +125,11 @@ label {
 	display: inline-block;
 }
 
-a {
+a#linktree {
     font-size: 10px;
     text-decoration: underline;
     opacity: 0.8;
-    display: block;
+    display: inline-block;
     color: #FFF;
     margin-top: 48px;
     padding: 16px 24px;
