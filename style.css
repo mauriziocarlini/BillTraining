@@ -100,7 +100,9 @@ label {
 	text-align: center;
 	margin: 0 auto 8px auto;
 }
-
+#stats button {
+	margin: 0 auto;
+}
 #item label {
 	display: inline-block;
 }
