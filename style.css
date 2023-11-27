@@ -22,11 +22,11 @@ p {
 }
 
 #fileInput {
-	display: none;
+    display: none;
 }
 
 #playGround {
-	display: none;
+    display: none;
     background-color: rgba(41,173,178,.2);
     border-radius: 4px;
     padding: 24px;
@@ -100,9 +100,11 @@ label {
 	text-align: center;
 	margin: 0 auto 8px auto;
 }
+
 #stats button {
 	margin: 0 auto;
 }
+
 #item label {
 	display: inline-block;
 }
