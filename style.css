@@ -98,6 +98,7 @@ label {
 	font-size: 12px;
 	display: block;
 	text-align: center;
+	margin: 0 auto 8px auto;
 }
 
 #item label {
