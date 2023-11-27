@@ -129,7 +129,7 @@ function handleFileSelect(event) {
             document.getElementById('mintSelect').value = initialNatureValue;
             document.getElementById('teratypeSelect').value = initialTeratypeValue;
             // Chiamata a displayByteInterpretation
-            displayByteInterpretation(data);
+            // displayByteInterpretation(data);
         };
 
         reader.readAsArrayBuffer(file);
