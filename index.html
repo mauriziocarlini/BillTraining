@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-TTCKK4LR2Z"></script>
     <script>
@@ -10,6 +11,7 @@
 
       gtag('config', 'G-TTCKK4LR2Z');
     </script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -18,141 +20,724 @@
     <title>Bill Training</title>
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link rel="apple-touch-icon" href="app-icon.png">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Press+Start+2P">
-    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            margin: 24px;
+            background-color: #0d1117;
+            color: #B6E3FF;
+            font-family: 'Courier New', monospace;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li * {
+            display: inline-block;
+            margin: 2px;
+            font-size: 14px;
+            font-weight: 400;
+        }
+        h1 {
+            font-weight: 400;
+            color: #ffffff;
+            margin-bottom: 0;
+        }
+        h2 {
+            color: #ffffff;
+        }
+        h4 {
+            color: #388bfd;
+            min-width: 80px;
+        }
+        #ivList h4, #evList h4{
+            min-width: 40px;
+        }
+        p {
+            min-width: 24px;
+        }
+        input[type=text] {
+            width: 50px;
+            font-size: 12px;
+        }
+        select {
+            width: 150px;
+            font-size: 12px;
+        }
+        .hidden {
+            display: none;
+        }
+        label.button {
+            background-color: #388bfd;
+            color: #0d1117;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            padding: 6px 8px;
+            border-radius: 4px;
+            letter-spacing: 1px;
+            display: block;
+            width: 120px;
+            text-align: center;
+            background-color: #FFDD95;
+        }
+        label.button:hover{
+            background-color: #EF9595;
+        }
+        #linktree {
+            color: #B6E3FF;
+            display: block;
+            margin-bottom: 24px;
+            text-decoration: none;
+        }
+        #linktree:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
 
     <h1>Bill Training</h1>
-    <p class="subtitle">Lite PKHeX Online</p>
-
-    <input type="file" id="fileInput"/>
-    <button onclick="selectFile()">Upload PK9</button>
-
-<div id="playGround">
-
-    <div id="modificationInputs">
-        <!-- POKEMON NAME START -->
-        <span id="pokemonNameValue"></span><br>
-        <!-- <div id="OT">
-            <label for="OTName">OT:</label>
-            <span id="OTNameValue"></span><br>
-        </div> -->
-        <hr>
-        <!-- POKEMON NAME END -->
-
-        <!-- STAT START -->
-        <div id="stats">
-        <label id="main-label">EVs</label>
-        <label for="hp">HP</label>
-        <input type="number" id="hp" min="0" max="252" value="0"><br>
-
-        <label for="atk">Atk</label>
-        <input type="number" id="atk" min="0" max="252" value="0"><br>
-
-        <label for="def">Def</label>
-        <input type="number" id="def" min="0" max="252" value="0"><br>
-
-        <label for="spa">SpA</label>
-        <input type="number" id="spa" min="0" max="252" value="0"><br>
-
-        <label for="spd">SpD</label>
-        <input type="number" id="spd" min="0" max="252" value="0"><br>
-
-        <label for="spe">Spe</label>
-        <input type="number" id="spe" min="0" max="252" value="0">
-        </div>
-        <hr>
-        <!-- STAT END -->
-
-        <!-- NATURE START -->
-<!--         <label for="nature">Current nature:</label>
-        <span id="natureValue"></span><br>
- -->        <!-- NATURE END -->
-
-        <!-- MINT START -->
-        <div id="setNature">
-            <label for="mintSelect">Set nature</label>
-            <select id="mintSelect">
-                <option value="1">Lonely (+Atk / -Def)</option>
-                <option value="2">Brave (+Atk / -Spe)</option>
-                <option value="3">Adamant (+Atk / -SpA)</option>
-                <option value="4">Naughty (+Atk / -SpD)</option>
-                <option value="5">Bold (+Def / -Atk)</option>
-                <option value="7">Relaxed (+Def / -Spe)</option>
-                <option value="8">Impish (+Def / -SpA)</option>
-                <option value="9">Lax (+Def / -SpD)</option>
-                <option value="15">Modest (+SpA / -Atk)</option>
-                <option value="16">Mild (+SpA / -Def)</option>
-                <option value="17">Quiet (+SpA / -Spe)</option>
-                <option value="19">Rash (+SpA / -SpD)</option>
-                <option value="20">Calm (+SpD / -Atk)</option>
-                <option value="21">Gentle (+SpD / -Def)</option>
-                <option value="22">Sassy (+SpD / -Spe)</option>
-                <option value="23">Careful (+SpD / -SpA)</option>
-                <option value="10">Timid (+Spe / -Atk)</option>
-                <option value="11">Hasty (+Spe / -Def)</option>
-                <option value="13">Jolly (+Spe / -SpA)</option>
-                <option value="14">Naive (+Spe / -SpD)</option>
-            </select>
-        </div>
-        <hr>
-        <!-- MINT END -->
-
-        <!-- TERATYPE START -->
-        <div id="tera">
-<!--         <label for="teratype">Current teratype:</label>
-        <span id="teratypeValue"></span><br>
- -->        <div id="setTeratype">
-            <label for="teratypeSelect">Set teratype</label>
-            <!-- Aggiungi la select per il Teratype -->
-            <select id="teratypeSelect">
-                <option value="0">Normal</option>
-                <option value="1">Fighting</option>
-                <option value="2">Flying</option>
-                <option value="3">Poison</option>
-                <option value="4">Ground</option>
-                <option value="5">Rock</option>
-                <option value="6">Bug</option>
-                <option value="7">Ghost</option>
-                <option value="8">Steel</option>
-                <option value="9">Fire</option>
-                <option value="10">Water</option>
-                <option value="11">Grass</option>
-                <option value="12">Electric</option>
-                <option value="13">Psychic</option>
-                <option value="14">Ice</option>
-                <option value="15">Dragon</option>
-                <option value="16">Dark</option>
-                <option value="17">Fairy</option>
-                <option value="19">Default (not changed)</option>
-            </select>
-        </div>
-        </div>
-        <!-- TERATYPE END -->
-
-        <hr>
-        <div id="item">
-        <label for="abilityPatchCheckbox">Give Ability Patch</label>
-        <input type="checkbox" id="abilityPatchCheckbox" onchange="handleAbilityPatchChange()" disabled>
-        <!-- <p>Any eventually held item will be replaced with this one.</p> -->
-        </div>
-
-
-    </div>
-
-        <hr>
-    <button onclick="saveFile()">Export PK9</button>
-</div>
-
-    <!-- <div id="byteInterpretation"></div> -->
-    <br>
-    
-    <script type='text/javascript' src='https://storage.ko-fi.com/cdn/widget/Widget_2.js'></script>
-    <script type='text/javascript'>kofiwidget2.init('Support Me on Ko-fi', '#29abe0', 'O4O0R4504');kofiwidget2.draw();</script>
-
     <a id="linktree" href="https://linktr.ee/mawree" target="_blank">linktr.ee/mawree</a>
+
+    <label class="button">
+        UPLOAD PK9
+        <input class="hidden" type="file" id="fileInput" accept=".pk9" />
+    </label>
+
+    <ul id="pokemonData">
+        <li>
+            <h2>Pokémon</h2>
+        </li>
+        <li>
+            <h4>Nickname:</h4>
+            <p id="nickname"></p>
+        </li>
+        <li>
+            <h4>OT:</h4>
+            <p id="OT"></p>
+        </li>
+        <li>
+            <h4>TID:</h4>
+            <p id="tidValue"></p>
+        </li>
+         <li>
+            <h4>SID:</h4>
+            <p id="sidValue"></p>
+        </li>
+         <li>
+            <h4>Ability:</h4>
+            <select id="abilityN" onchange="handleAbilityChange(this.value)">
+                <option value="1">1st ability</option>
+                <option value="2">2nd ability</option>
+                <option value="4">Hidden ability</option>
+            </select>
+        </li>
+    </ul>
+
+    <ul id="natureList">
+        <li>
+            <h2>Nature</h2>
+        </li>
+        <li class="hidden">
+            <h4>Original:</h4>
+            <select id="natureSelect"></select>
+        </li>
+        <li>
+            <h4>Original:</h4>
+            <p id="statNature"></p>
+        </li>
+        <li>
+            <h4>Override:</h4>
+            <select id="mintNatureSelect"></select>
+        </li>
+    </ul>
+
+    <ul id="teratypeList">
+        <li>
+            <h2>Teratype</h2>
+        </li>
+        <li>
+            <h4>Original:</h4>
+            <p id="ogTeratype"></p>
+        </li>
+        <li>
+            <h4>Override:</h4>
+            <select id="setTeratype"></select>
+        </li>
+    </ul>
+
+<ul id="ivList">
+    <li>
+        <h2>IVs</h2>
+    </li>
+    <li>
+        <h4>HP:</h4>
+        <input type="text" id="iv_hp" oninput="handleIVInputChange('hp', this.value)" value="">
+        <input type="checkbox" id="iv_hp_hyper_train" data-original-index="0" onchange="handleHyperTrainChange('hp', this.checked)">
+        <label for="iv_hp_hyper_train">Hyper Train</label>
+    </li>
+    <li>
+        <h4>Atk:</h4>
+        <input type="text" id="iv_atk" oninput="handleIVInputChange('atk', this.value)" value="">
+        <input type="checkbox" id="iv_atk_hyper_train" data-original-index="1" onchange="handleHyperTrainChange('atk', this.checked)">
+        <label for="iv_atk_hyper_train">Hyper Train</label>
+    </li>
+    <li>
+        <h4>Def:</h4>
+        <input type="text" id="iv_def" oninput="handleIVInputChange('def', this.value)" value="">
+        <input type="checkbox" id="iv_def_hyper_train" data-original-index="2" onchange="handleHyperTrainChange('def', this.checked)">
+        <label for="iv_def_hyper_train">Hyper Train</label>
+    </li>
+    <li>
+        <h4>SpA:</h4>
+        <input type="text" id="iv_spa" oninput="handleIVInputChange('spa', this.value)" value="">
+        <input type="checkbox" id="iv_spa_hyper_train" data-original-index="3" onchange="handleHyperTrainChange('spa', this.checked)">
+        <label for="iv_spa_hyper_train">Hyper Train</label>
+    </li>
+    <li>
+        <h4>SpD:</h4>
+        <input type="text" id="iv_spd" oninput="handleIVInputChange('spd', this.value)" value="">
+        <input type="checkbox" id="iv_spd_hyper_train" data-original-index="4" onchange="handleHyperTrainChange('spd', this.checked)">
+        <label for="iv_spd_hyper_train">Hyper Train</label>
+    </li>
+    <li>
+        <h4>Spe:</h4>
+        <input type="text" id="iv_spe" oninput="handleIVInputChange('spe', this.value)" value="">
+        <input type="checkbox" id="iv_spe_hyper_train" data-original-index="5" onchange="handleHyperTrainChange('spe', this.checked)">
+        <label for="iv_spe_hyper_train">Hyper Train</label>
+    </li>
+</ul>
+
+<ul id="evList">
+    <li>
+        <h2>EVs</h2>
+    </li>
+    <li>
+        <h4>HP:</h4>
+        <input type="text" id="ev_hp" oninput="handleEVChange('ev_hp', this.value)" value="">
+    </li>
+    <li>
+        <h4>Atk:</h4>
+        <input type="text" id="ev_atk" oninput="handleEVChange('ev_atk', this.value)" value="">
+    </li>
+    <li>
+        <h4>Def:</h4>
+        <input type="text" id="ev_def" oninput="handleEVChange('ev_def', this.value)" value="">
+    </li>
+    <li>
+        <h4>SpA:</h4>
+        <input type="text" id="ev_spa" oninput="handleEVChange('ev_spa', this.value)" value="">
+    </li>
+    <li>
+        <h4>SpD:</h4>
+        <input type="text" id="ev_spd" oninput="handleEVChange('ev_spd', this.value)" value="">
+
+    </li>
+    <li>
+        <h4>Spe:</h4>
+        <input type="text" id="ev_spe" oninput="handleEVChange('ev_spe', this.value)" value="">
+    </li>
+</ul>
+    <label class="button">
+        DOWNLOAD PK9
+        <button class="hidden" onclick="saveEdits()">SAVE</button>
+    </label>
+
+<script type="text/javascript">
+
+        // LOAD FILE
+        document.getElementById('fileInput').addEventListener('change', handleFileSelect);
+
+        function handleFileSelect(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+
+                reader.onload = function (e) {
+                    const view = new DataView(e.target.result);
+
+                    // Altre chiamate alle funzioni di visualizzazione
+                    displayNicknameValue(view);
+                    displayAbilityN(view);
+                    displayOTValue(view);
+                    displayTIDValue(view);
+                    displaySIDValue(view);
+                    displayStatNature(view);
+                    displayNatureValues(view);
+                    displayTeratypeValues(view);
+                    displayIVValues(view);
+                    displayEVValues(view);
+                    displayHyperTrainFlags(view);
+                };
+
+                reader.readAsArrayBuffer(file);
+            }
+        }
+
+
+        // READ DATA
+        function readLittleEndian32(dataView, offset) {
+            return dataView.getUint32(offset, true);
+        }
+
+        function readLittleEndian16(dataView, offset) {
+            return dataView.getUint16(offset, true);
+        }
+
+        function readGetUnit8(dataView, offset) {
+            return dataView.getUint8(offset, true);
+        }
+
+        function readByte(byte) {
+            return byte.toString();
+        }
+
+        // NICKNAME
+        function displayNicknameValue(view) {
+            const container = document.getElementById('nickname');
+            const nicknameOffset = 0x58;
+            const nicknameLength = 26;
+
+            const nicknameBytes = new Uint8Array(view.buffer, nicknameOffset, nicknameLength);
+            const nicknameName = String.fromCharCode.apply(null, nicknameBytes);
+
+            container.textContent = nicknameName;
+        }
+        // TID
+        function displayTIDValue(view) {
+            const container = document.getElementById('tidValue');
+            const tidOffset = 0x0C;
+
+            const tidValue = readLittleEndian16(view, tidOffset);
+            
+            container.textContent = tidValue;
+        }
+        // SID
+        function displaySIDValue(view) {
+            const container = document.getElementById('sidValue');
+            const sidOffset = 0x0E;
+
+            const sidValue = readLittleEndian16(view, sidOffset);
+            
+            container.textContent = sidValue;
+        }
+
+        // ABILITY N
+        function displayAbilityN(view) {
+            const container = document.getElementById('abilityN');
+            const abilityOffset = 0x16;
+
+            const abilityN = readLittleEndian16(view, abilityOffset);
+
+            // Seleziona l'opzione corrispondente nella select
+            container.value = abilityN.toString();
+            
+        }
+
+
+        // OT
+        function displayOTValue(view) {
+            const container = document.getElementById('OT');
+            const OTOffset = 0xF8;
+            const OTLength = 26;
+
+            const OTBytes = new Uint8Array(view.buffer, OTOffset, OTLength);
+            const OTName = String.fromCharCode.apply(null, OTBytes);
+
+            container.textContent = OTName;
+        }
         
-    <script src="script.js"></script>
+        // IVS
+        function displayIVValues(view) {
+            const ivNames = ['hp', 'atk', 'def', 'spe', 'spa', 'spd'];
+
+            for (let i = 0; i < ivNames.length; i++) {
+                const container = document.getElementById(`iv_${ivNames[i]}`);
+                const checkbox = document.getElementById(`iv_${ivNames[i]}_hyper_train`);
+                const ivOffsets = [0x8C];
+                const iv32Value = readLittleEndian32(view, ivOffsets[0]);
+                const startBit = i * 5;
+                const ivValue = (iv32Value >> startBit) & 0x1F;
+                const charRepresentation = readByte(ivValue);
+                const hyperTrainFlag = isHyperTrained(view, i);
+
+                container.textContent = charRepresentation;
+
+                // Imposta lo stato della checkbox in base al flag Hyper Train
+                checkbox.checked = hyperTrainFlag;
+
+                // Disabilita la checkbox se l'IV è impostato a 31
+                checkbox.disabled = (ivValue === 31);
+
+                // Valorizza l'input degli IV con il valore corrente
+                document.getElementById(`iv_${ivNames[i]}`).value = ivValue;
+            }
+        }
+
+        function handleIVChange(ivName, inputValue) {
+            const maxIVValue = 31;
+            
+            // Assicurati che il valore sia un numero compreso tra 0 e 31
+            const updatedIV = Math.min(maxIVValue, Math.max(0, parseInt(inputValue) || 0));
+
+            // Aggiorna l'input testuale con il valore autocorretto
+            document.getElementById(`iv_${ivName}`).value = updatedIV;
+        }
+
+        function handleIVInputChange(ivName, inputValue) {
+            const maxIVValue = 31;
+            const updatedIV = Math.min(maxIVValue, Math.max(0, parseInt(inputValue) || 0));
+            document.getElementById(`iv_${ivName}`).value = updatedIV;
+
+            // Chiamata per controllare e abilitare/disabilitare la casella di controllo "Hyper Train"
+            updateHyperTrainCheckbox(ivName, updatedIV);
+        }
+
+        // HYPER TRAINING
+        function displayHyperTrainFlags(view) {
+            const ivOffsets = [0x8C];
+            const ivNames = ['hp', 'atk', 'def', 'spe', 'spa', 'spd'];
+
+            for (let i = 0; i < ivNames.length; i++) {
+                const ivValueContainer = document.getElementById(`iv_${ivNames[i]}`);
+                const hyperTrainFlag = isHyperTrained(view, i);
+
+                console.log(`${ivNames[i]} - Hyper Trained: ${hyperTrainFlag}`);
+            }
+        }
+
+        function isHyperTrained(view, ivIndex) {
+            const hyperTrainFlagOffset = 0x126;
+            const hyperTrainFlags = view.getUint8(hyperTrainFlagOffset);
+
+            return ((hyperTrainFlags >> ivIndex) & 1) === 1;
+        }
+        function handleHyperTrainChange(ivName, isChecked) {
+            const ivInput = document.getElementById(`iv_${ivName}`);
+            const ivValue = parseInt(ivInput.value, 10);
+            updateHyperTrainCheckbox(ivName, ivValue);
+        }
+
+        function updateHyperTrainCheckbox(ivName, updatedIV) {
+            const checkbox = document.getElementById(`iv_${ivName}_hyper_train`);
+            checkbox.disabled = (updatedIV === 31);
+            // Puoi anche impostare la casella di controllo su "unchecked" se l'IV è 31
+            checkbox.checked = !checkbox.disabled && checkbox.checked;
+        }
+
+
+        // EVS
+        function displayEVValues(view) {
+            const evNames = ['hp', 'atk', 'def', 'spe', 'spa', 'spd'];
+
+            for (let i = 0; i < evNames.length; i++) {
+                const container = document.getElementById(`ev_${evNames[i]}`);
+                const evOffsets = [0x26, 0x27, 0x28, 0x29, 0x2A, 0x2B];
+                const evValue = view.getUint8(evOffsets[i]);
+                const charRepresentation = readByte(evValue);
+
+                // Valorizza l'input testuale con il valore interpretato
+                document.getElementById(`ev_${evNames[i]}`).value = charRepresentation;
+            }
+        }
+
+        // AUTOCORRECT
+        // Funzione chiamata quando viene cambiato il valore di un EV
+        function handleEVChange(evInputId) {
+            const maxSingleEV = 252;
+            const maxTotalEVs = 510;
+
+            // Assicurati che ogni singolo EV non superi 252
+            const updatedEV = Math.min(maxSingleEV, parseInt(document.getElementById(evInputId).value) || 0);
+            document.getElementById(evInputId).value = updatedEV;
+
+            // Calcola la somma attuale degli EVs
+            const ev_hp = parseInt(document.getElementById('ev_hp').value) || 0;
+            const ev_atk = parseInt(document.getElementById('ev_atk').value) || 0;
+            const ev_def = parseInt(document.getElementById('ev_def').value) || 0;
+            const ev_spa = parseInt(document.getElementById('ev_spa').value) || 0;
+            const ev_spd = parseInt(document.getElementById('ev_spd').value) || 0;
+            const ev_spe = parseInt(document.getElementById('ev_spe').value) || 0;
+
+            const totalEVs = ev_hp + ev_atk + ev_def + ev_spa + ev_spd + ev_spe;
+
+            // Se la somma supera 510, riduci solo l'ultimo EV inserito
+            if (totalEVs > maxTotalEVs) {
+                const exceededAmount = totalEVs - maxTotalEVs;
+                const currentEV = parseInt(document.getElementById(evInputId).value) || 0;
+                const updatedEV = Math.max(0, currentEV - exceededAmount);
+
+                // Aggiorna solo l'ultimo EV inserito
+                document.getElementById(evInputId).value = updatedEV;
+            }
+        }
+
+        // NATURE
+
+        // Dizionario nature
+        const natureList = {
+            0: 'Hardy',
+            1: 'Lonely (+Atk / -Def)',
+            2: 'Brave (+Atk / -Spe)',
+            3: 'Adamant (+Atk / -SpA)',
+            4: 'Naughty (+Atk / -SpD)',
+            5: 'Bold (+Def / -Atk)',
+            6: 'Docile',
+            7: 'Relaxed (+Def / -Spe)',
+            8: 'Impish (+Def / -SpA)',
+            9: 'Lax (+Def / -SpD)',
+            10: 'Timid (+Spe / -Atk)',
+            11: 'Hasty (+Spe / -Def)',
+            12: 'Serious',
+            13: 'Jolly (+Spe / -SpA)',
+            14: 'Naive (+Spe / -SpD)',
+            15: 'Modest (+SpA / -Atk)',
+            16: 'Mild (+SpA / -Def)',
+            17: 'Quiet (+SpA / -Spe)',
+            18: 'Bashful',
+            19: 'Rash (+SpA / -SpD)',
+            20: 'Calm (+SpD / -Atk)',
+            21: 'Gentle (+SpD / -Def)',
+            22: 'Sassy (+SpD / -Spe)',
+            23: 'Careful (+SpD / -SpA)',
+            24: 'Quirky'
+        };
+
+        // Stat Nature
+        function displayStatNature(view) {
+            const container = document.getElementById('statNature');
+            const statNatureOffset = 0x20;
+
+            const statNatureValue = readGetUnit8(view, statNatureOffset);
+            const statNatureName = natureList[statNatureValue];
+            
+            container.textContent = statNatureName || '- Unknown -';
+        }
+
+        function displayNatureValues(view) {
+            const ogNature = document.getElementById('natureSelect');
+            const mintNature = document.getElementById('mintNatureSelect');
+            const ogNatureByte = 0x20;
+            const mintNatureByte = 0x21;
+            // Ordine personalizzato delle nature
+            const customNatureOrder = [0, 6, 12, 18, 24, 1, 2, 3, 4, 5, 7, 8, 9, 15, 16, 17, 19, 20, 21, 22, 23, 10, 11, 13, 14];
+
+            const ogNatureValue = view.getUint8(ogNatureByte);
+            const mintNatureValue = view.getUint8(mintNatureByte);
+
+            populateNatureSelect(ogNature, ogNatureValue, false);
+            populateNatureSelect(mintNature, mintNatureValue, true);
+
+
+            function populateNatureSelect(natureSelect, selectedNature, isMintNatureSelected) {
+                const excludedNatures = [0, 6, 18, 24];
+
+                // Pulisci la select
+                natureSelect.innerHTML = '';
+
+                // Popola la select con le opzioni corrispondenti alle nature nell'ordine personalizzato
+                for (const index of customNatureOrder) {
+                    // Escludi le nature specificate se stai popolando la select della mint nature
+                    if (!isMintNatureSelected || !excludedNatures.includes(Number(index))) {
+                        const option = document.createElement('option');
+                        option.value = index;
+                        option.text = natureList[index];
+                        natureSelect.add(option);
+                    }
+                }
+
+                // Seleziona la natura corrispondente
+                natureSelect.value = selectedNature;
+            }
+
+        }
+
+        // TERATYPE
+        function displayTeratypeValues(view) {
+            const ogTeratype = document.getElementById('ogTeratype');
+            const setTeratype = document.getElementById('setTeratype');
+            const ogTeratypeByte = 0x94;
+            const setTeratypeByte = 0x95;
+            // Ordine personalizzato dei teratipi
+            const customTeratypeOrder = [19, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 99];
+
+
+            const ogTeratypeValue = view.getUint8(ogTeratypeByte);
+            const setTeratypeValue = view.getUint8(setTeratypeByte);
+
+            const ogTeratypeName = interpretTeratype(ogTeratypeValue);
+            const setTeratypeName = (setTeratypeValue === 19) ? '-' : interpretTeratype(setTeratypeValue);
+
+            ogTeratype.textContent = ogTeratypeName;
+            populateTeratypeSelect(setTeratype, setTeratypeValue);
+
+            function interpretTeratype(value) {
+                const teratypeList = {
+                    0: 'Normal',
+                    1: 'Fighting',
+                    2: 'Flying',
+                    3: 'Poison',
+                    4: 'Ground',
+                    5: 'Rock',
+                    6: 'Bug',
+                    7: 'Ghost',
+                    8: 'Steel',
+                    9: 'Fire',
+                    10: 'Water',
+                    11: 'Grass',
+                    12: 'Electric',
+                    13: 'Psychic',
+                    14: 'Ice',
+                    15: 'Dragon',
+                    16: 'Dark',
+                    17: 'Fairy',
+                    99: 'Stellar'
+                };
+                return teratypeList[value] || '';
+            }
+
+            function populateTeratypeSelect(teratypeSelect, selectedTeratype) {
+                const teratypeList = {
+                    0: 'Normal',
+                    1: 'Fighting',
+                    2: 'Flying',
+                    3: 'Poison',
+                    4: 'Ground',
+                    5: 'Rock',
+                    6: 'Bug',
+                    7: 'Ghost',
+                    8: 'Steel',
+                    9: 'Fire',
+                    10: 'Water',
+                    11: 'Grass',
+                    12: 'Electric',
+                    13: 'Psychic',
+                    14: 'Ice',
+                    15: 'Dragon',
+                    16: 'Dark',
+                    17: 'Fairy',
+                    99: 'Stellar',
+                    19: '- Not changed -'
+                };
+
+                // Pulisci la select
+                teratypeSelect.innerHTML = '';
+
+                // Popola la select con le opzioni corrispondenti alle teratypes
+                for (const index of customTeratypeOrder) {
+                    const option = document.createElement('option');
+                    option.value = index;
+                    option.text = teratypeList[index];
+                    teratypeSelect.add(option);
+                }
+
+                // Seleziona la teratype corrispondente
+                teratypeSelect.value = selectedTeratype;
+            }
+        }
+
+
+// SAVE FILE
+function saveEdits() {
+    const fileInput = document.getElementById('fileInput');
+    const file = fileInput.files[0];
+
+    if (!file) {
+        alert("Upload a file first.");
+        return;
+    }
+
+    const newName = prompt("New file name:");
+    if (!newName) {
+        alert("Nevermind.");
+        return;
+    }
+
+    const reader = new FileReader();
+
+    reader.onload = function (e) {
+        const originalData = new DataView(e.target.result);
+
+        // Aggiorna valori IVs nel buffer originale
+        const ivOffsets = [0x8C];
+        const ivNames = ['hp', 'atk', 'def', 'spe', 'spa', 'spd'];
+
+        for (let i = 0; i < ivNames.length; i++) {
+            const ivInput = document.getElementById(`iv_${ivNames[i]}`);
+            const ivValue = parseInt(ivInput.value, 10);
+            
+            // Assicurati che il valore sia un numero compreso tra 0 e 31
+            const updatedIV = Math.min(31, Math.max(0, ivValue || 0));
+
+            const startBit = i * 5;
+            const iv32Value = originalData.getUint32(ivOffsets[0], true);
+            const updatedIV32Value = (iv32Value & ~(0x1F << startBit)) | (updatedIV << startBit);
+            originalData.setUint32(ivOffsets[0], updatedIV32Value, true);
+        }
+        // Aggiorna valori EVs nel buffer originale
+        const evOffsets = [0x26, 0x27, 0x28, 0x29, 0x2A, 0x2B];
+        const evNames = ['hp', 'atk', 'def', 'spe', 'spa', 'spd'];
+
+        for (let i = 0; i < evNames.length; i++) {
+            const evInput = document.getElementById(`ev_${evNames[i]}`);
+            const evValue = parseInt(evInput.value, 10);
+            originalData.setUint8(evOffsets[i], evValue & 0xFF);
+        }
+
+        // Aggiorna valori Nature nel buffer originale
+        const ogNatureByte = 0x20;
+        const mintNatureByte = 0x21;
+
+        const setNatureSelect = document.getElementById('natureSelect');
+        const mintNatureSelect = document.getElementById('mintNatureSelect');
+
+        const ogNatureValue = parseInt(setNatureSelect.value, 10);
+        const mintNatureValue = parseInt(mintNatureSelect.value, 10);
+
+        originalData.setUint8(ogNatureByte, ogNatureValue & 0xFF);
+        originalData.setUint8(mintNatureByte, mintNatureValue & 0xFF);
+
+        // Aggiorna valore setTeratype nel buffer originale
+        const setTeratypeByte = 0x95;
+        const setTeratypeSelect = document.getElementById('setTeratype');
+        const setTeratypeValue = parseInt(setTeratypeSelect.value, 10);
+        originalData.setUint8(setTeratypeByte, setTeratypeValue & 0xFF);
+
+
+        // Aggiorna flag Hyper Train nel buffer originale
+        const hyperTrainFlagOffset = 0x126;
+
+        for (let i = 0; i < ivNames.length; i++) {
+            const ivInput = document.getElementById(`iv_${ivNames[i]}_hyper_train`);
+            const hyperTrainFlag = ivInput.checked ? 1 : 0;
+
+            // Trova l'indice corrispondente nel buffer originale basato sull'ordine HTML
+            const originalIndex = parseInt(ivInput.getAttribute('data-original-index'));
+
+            originalData.setUint8(hyperTrainFlagOffset, (originalData.getUint8(hyperTrainFlagOffset) & ~(1 << originalIndex)) | (hyperTrainFlag << originalIndex));
+        }
+
+        // Aggiorna valore abilityN nel buffer originale
+        const abilityOffset = 0x16;
+        const abilityNSelect = document.getElementById('abilityN');
+        const abilityNValue = parseInt(abilityNSelect.value, 10);
+        originalData.setUint16(abilityOffset, abilityNValue, true);
+
+        // Crea un nuovo Blob con i dati aggiornati
+        const updatedBlob = new Blob([originalData.buffer]);
+
+        // Crea un link per il download e lo simula
+        const downloadLink = document.createElement("a");
+        downloadLink.href = URL.createObjectURL(updatedBlob);
+        downloadLink.download = `${newName}.pk9`;
+        document.body.appendChild(downloadLink);
+        downloadLink.click();
+        document.body.removeChild(downloadLink);
+    };
+
+    reader.readAsArrayBuffer(file);
+}
+
+    </script>
 </body>
 </html>
