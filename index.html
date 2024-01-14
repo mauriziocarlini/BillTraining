@@ -116,7 +116,7 @@
             <h4>OT:</h4>
             <p id="OT"></p>
         </li>
-        <li>
+        <li class="hidden">
             <h4>TID:</h4>
             <p id="tidValue"></p>
         </li>
@@ -303,7 +303,7 @@
 
             container.textContent = nicknameName;
         }
-        // TID
+        // TID (need to trim)
         function displayTIDValue(view) {
             const container = document.getElementById('tidValue');
             const tidOffset = 0x0C;
@@ -312,7 +312,7 @@
             
             container.textContent = tidValue;
         }
-        // SID
+        // SID (need to fix)
         function displaySIDValue(view) {
             const container = document.getElementById('sidValue');
             const sidOffset = 0x0E;
