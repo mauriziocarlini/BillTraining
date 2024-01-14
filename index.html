@@ -120,7 +120,7 @@
             <h4>TID:</h4>
             <p id="tidValue"></p>
         </li>
-         <li>
+         <li class="hidden">
             <h4>SID:</h4>
             <p id="sidValue"></p>
         </li>
@@ -308,7 +308,7 @@
             const container = document.getElementById('tidValue');
             const tidOffset = 0x0C;
 
-            const tidValue = readLittleEndian16(view, tidOffset);
+            const tidValue = readLittleEndian32(view, tidOffset);
             
             container.textContent = tidValue;
         }
