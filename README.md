@@ -1,8 +1,16 @@
 # Bill Training - Lite PKHeX Online
 This web app helps you train your Pokémon.
 
-Just upload your dumped PK9, view and edit stats, nature, teratype, and choose if you want to assign Ability Patch as an held item (you can use it or sell it for 250k).
+Just upload your dumped PK9, then you can:
 
-Then export your trained Pokemon as a PK9 file.
+- Check pokémon nickname and OT
+- Change ability
+- Change override nature (as with mints)
+- Change override teratype (as with shards)
+- Edit IVs
+- Hyper train IVs (make sure your pokémon is at least lvl 50, since I didn't add any legality check yet for this specific feature)
+- Edit EVs
+
+Then export your trained PK9 file.
 
 [Bill Training Web App](https://mauriziocarlini.github.io/billtraining/)
